@@ -17,8 +17,8 @@ async function boot() {
   startReminderJob();
 
   const app = createApp();
-  const server = app.listen(config.PORT, () => {
-    logger.info(`HearCare API listening on ${config.PUBLIC_URL} (port ${config.PORT})`);
+  const server = app.listen(config.PORT, '0.0.0.0', () => {
+    logger.info(`HearCare API listening on 0.0.0.0:${config.PORT} (public: ${config.PUBLIC_URL})`);
   });
 
   const shutdown = async (signal: string) => {
@@ -35,6 +35,8 @@ async function boot() {
 }
 
 boot().catch((err) => {
+  // eslint-disable-next-line no-console
+  console.error('\n❌ FATAL: Server failed to start due to runtime error:\n', err);
   logger.error({ err }, 'Server failed to start');
   process.exit(1);
 });

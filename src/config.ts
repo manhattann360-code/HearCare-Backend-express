@@ -50,6 +50,8 @@ export const isTest = config.NODE_ENV === 'test';
 
 if (isProd && config.JWT_SECRET.startsWith('dev-only')) {
   // eslint-disable-next-line no-console
-  console.error('JWT_SECRET must be set in production.');
+  console.error(
+    '\n❌ FATAL CONFIG ERROR: JWT_SECRET must be set in production! Please add JWT_SECRET to your Render Environment Variables.\n'
+  );
   process.exit(1);
 }
