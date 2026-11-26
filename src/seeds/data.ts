@@ -61,6 +61,22 @@ const SERVICES = [
     forChildren: true,
     sortOrder: 6,
   },
+  {
+    slug: 'vestibular-audiology',
+    name: { en: 'Vestibular & Balance evaluation', sw: 'Uchunguzi wa kizunguzungu na usawa' },
+    description: { en: 'Specialist care for dizziness, vertigo, and balance difficulties', sw: 'Huduma ya kitaalamu kwa kizunguzungu na changamoto za usawa' },
+    icon: 'cyclone',
+    forChildren: false,
+    sortOrder: 7,
+  },
+  {
+    slug: 'occupational-audiology',
+    name: { en: 'Occupational hearing assessment', sw: 'Upimaji wa kusikia kazini' },
+    description: { en: 'Workplace baseline and annual hearing tests for noisy industries', sw: 'Upimaji wa awali na wa mara kwa mara kwa wafanyakazi kwenye kelele' },
+    icon: 'factory',
+    forChildren: false,
+    sortOrder: 8,
+  },
 ];
 
 const TOPICS = [
@@ -72,6 +88,7 @@ const TOPICS = [
   { slug: 'children-and-hearing', name: { en: 'Children & hearing', sw: 'Watoto na uwezo wa kusikia' }, icon: 'child_care', sortOrder: 6 },
   { slug: 'newborn-hearing-screening', name: { en: 'Newborn hearing screening', sw: 'Uchunguzi wa watoto wachanga' }, icon: 'crib', sortOrder: 7 },
   { slug: 'speech-and-language-development', name: { en: 'Speech & language development', sw: 'Ukuaji wa usemi na lugha' }, icon: 'record_voice_over', sortOrder: 8 },
+  { slug: 'dizziness-and-balance', name: { en: 'Dizziness & Balance', sw: 'Kizunguzungu na usawa' }, icon: 'cyclone', sortOrder: 9 },
 ];
 
 export async function seedBase() {

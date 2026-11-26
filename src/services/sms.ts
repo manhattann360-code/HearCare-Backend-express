@@ -52,12 +52,56 @@ class BeemSms implements SmsProvider {
   }
 }
 
+class TextifySms implements SmsProvider {
+  async send(to: string, message: string) {
+    if (!config.TEXTIFY_API_KEY) {
+      logger.warn('Textify API key is not configured; skipping SMS delivery.');
+      return;
+    }
+    const digits = to.replace(/\D/g, '');
+    const receiver = digits.startsWith('0') ? `255${digits.slice(1)}` : digits;
+
+    const payload: Record<string, unknown> = {
+      is_scheduled: false,
+      messages: [
+        {
+          receiver,
+          content: message,
+        },
+      ],
+    };
+
+    const sender = config.TEXTIFY_SENDER_NAME || (config.SMS_SENDER_ID !== 'HearCare' ? config.SMS_SENDER_ID : '');
+    if (sender) {
+      payload.sender_name = sender;
+    }
+
+    const res = await fetch('https://portal.textify.africa/api/v1/messages', {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${config.TEXTIFY_API_KEY}`,
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+      },
+      body: JSON.stringify(payload),
+    });
+
+    if (!res.ok) {
+      const errText = await res.text();
+      logger.error({ status: res.status, errText, to: receiver }, 'Textify SMS delivery error');
+      throw new Error(`Textify error ${res.status}: ${errText}`);
+    }
+  }
+}
+
 export const sms: SmsProvider =
-  config.SMS_PROVIDER === 'africastalking'
-    ? new AfricasTalkingSms()
-    : config.SMS_PROVIDER === 'beem'
-      ? new BeemSms()
-      : new ConsoleSms();
+  config.SMS_PROVIDER === 'textify'
+    ? new TextifySms()
+    : config.SMS_PROVIDER === 'africastalking'
+      ? new AfricasTalkingSms()
+      : config.SMS_PROVIDER === 'beem'
+        ? new BeemSms()
+        : new ConsoleSms();
 
 /** Fire-and-forget SMS that never throws into request handlers. */
 export function safeSms(to: string | undefined | null, message: string) {

@@ -7,6 +7,7 @@ import { logger } from './utils/logger';
 import { errorHandler, notFoundHandler } from './middleware';
 import { mediaRouter, publicRouter } from './routes/public';
 import { adminRouter } from './routes/admin';
+import { screeningRouter } from './routes/screening';
 
 export function createApp() {
   const app = express();
@@ -32,6 +33,7 @@ export function createApp() {
 
   app.use('/media', mediaRouter);
   app.use('/api/v1', publicRouter);
+  app.use('/api/v1', screeningRouter);
   app.use('/api/v1/admin', adminRouter);
 
   app.use(notFoundHandler);

@@ -263,6 +263,26 @@ const notificationSchema = new Schema(
 );
 export const Notification = model('Notification', notificationSchema);
 
+/* ---------------- ScreeningResult ---------------- */
+const screeningResultSchema = new Schema(
+  {
+    user: { type: Schema.Types.ObjectId, ref: 'User', default: null, index: true },
+    guestId: { type: String, default: null, index: true },
+    answers: {
+      type: [{ _id: false, questionId: String, answer: String, score: Number }],
+      default: [],
+    },
+    totalScore: { type: Number, required: true },
+    result: { type: String, enum: ['pass', 'refer'], required: true },
+    severity: { type: String, enum: ['low_risk', 'mild_moderate', 'significant'], default: 'low_risk' },
+    recommendations: { type: [String], default: [] },
+    hasRedFlags: { type: Boolean, default: false },
+    completedAt: { type: Date, default: Date.now },
+  },
+  opts,
+);
+export const ScreeningResult = model('ScreeningResult', screeningResultSchema);
+
 export const allModels = [
-  Region, Service, Topic, Clinic, Audiologist, Appointment, Article, User, AdminUser, OtpCode, RefreshToken, Notification,
+  Region, Service, Topic, Clinic, Audiologist, Appointment, Article, User, AdminUser, OtpCode, RefreshToken, Notification, ScreeningResult,
 ];

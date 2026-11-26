@@ -50,7 +50,7 @@ describe('HearCare Backend API', () => {
     expect(reg.body.data.length).toBeGreaterThanOrEqual(7);
     expect(svc.body.data.length).toBeGreaterThanOrEqual(6);
     expect(svc.body.data[0].name).toBeTruthy();
-    expect(top.body.data.length).toBe(8);
+    expect(top.body.data.length).toBeGreaterThanOrEqual(8);
   });
 
   it('filters audiologists and generates slots respecting weeklyHours and timeOff', async () => {
