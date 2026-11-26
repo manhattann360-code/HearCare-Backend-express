@@ -1,0 +1,29 @@
+services:
+  - type: web
+    name: hearcare-backend
+    runtime: node
+    plan: starter
+    buildCommand: npm ci && npm run build
+    startCommand: node dist/server.js
+    healthCheckPath: /health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: MONGODB_URI
+        sync: false
+      - key: JWT_SECRET
+        generateValue: true
+      - key: PUBLIC_URL
+        sync: false
+      - key: CORS_ORIGINS
+        sync: false
+      - key: ADMIN_EMAIL
+        sync: false
+      - key: ADMIN_PASSWORD
+        sync: false
+      - key: SMS_PROVIDER
+        value: africastalking
+      - key: AT_USERNAME
+        sync: false
+      - key: AT_API_KEY
+        sync: false
