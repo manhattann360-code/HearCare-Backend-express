@@ -525,6 +525,30 @@ export async function seedDemo() {
 <p>Watoto hujifunza kuongea kwa kusikia sauti zilizo wazi kila siku. Kama mtoto hageuki anapoitwa au anachelewa kutoa maneno, muone mtaalamu wa kusikia.</p>`,
       },
     },
+    {
+      slug: 'understanding-dizziness-vertigo-and-balance',
+      topic: topics.get('dizziness-and-balance'),
+      tag: 'care-guide' as const,
+      isFeatured: false,
+      reviewedBy: { name: 'Dr. Baraka Msuya', credential: 'Clinical Audiologist' },
+      en: {
+        title: 'Understanding dizziness, vertigo and inner-ear balance',
+        summary: 'How the inner ear controls balance and when to seek vestibular care.',
+        html: `<h2>Your inner ear is also your balance centre</h2>
+<p>Alongside the hearing organ (cochlea), your inner ear contains the vestibular system — tiny fluid-filled canals that tell your brain how your head is moving.</p>
+<h2>Common signs of inner-ear balance issues</h2>
+<ul><li>A spinning sensation (vertigo) when rolling over in bed or looking up.</li><li>Feeling unsteady or light-headed when walking.</li><li>Dizziness accompanied by ringing in the ears or a feeling of fullness.</li></ul>
+<blockquote><p><strong>When to see a specialist</strong></p><p>Book a vestibular evaluation with an audiologist if dizziness repeats or affects your daily safety.</p></blockquote>`,
+      },
+      sw: {
+        title: 'Kuelewa kizunguzungu na mfumo wa usawa wa sikio la ndani',
+        summary: 'Jinsi sikio la ndani linavyodhibiti usawa wa mwili na wakati wa kumuona mtaalamu.',
+        html: `<h2>Sikio la ndani hudhibiti pia usawa wa mwili</h2>
+<p>Mbali na kusikia, sikio lako la ndani lina mfumo wa usawa (vestibular system) unaoujulisha ubongo jinsi kichwa na mwili vinavyosogea.</p>
+<h2>Dalili za kawaida</h2>
+<ul><li>Kuhisi chumba kinazunguka unapogeuka kitandani au kutazama juu.</li><li>Kukosa usawa unapotembea au kizunguzungu kinachoambatana na mlio masikioni.</li></ul>`,
+      },
+    },
   ];
 
   const now = new Date();
